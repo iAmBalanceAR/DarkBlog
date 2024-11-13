@@ -20,9 +20,10 @@ export default function HomePage() {
     title: article.title,
     category: article.category,
     subcategory: article.subcategory,
-    slug: "",
-    categorySlug: "",
-    blurb: ""
+    slug: article.title.toLowerCase().replace(/\s+/g, '-'),
+    categorySlug: article.category.toLowerCase().replace(/\s+/g, '-'),
+    blurb: '',
+    createdAt: new Date().toISOString()
   }))
 
   return (
