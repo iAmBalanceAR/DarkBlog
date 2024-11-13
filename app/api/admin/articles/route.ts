@@ -2,7 +2,6 @@ import { NextResponse } from 'next/server'
 import prisma from '@/app/lib/prisma'
 import { getServerSession } from 'next-auth'
 import { authOptions } from '@/app/lib/auth'
-import { Article } from '@prisma/client'
 
 interface Article {
   id: string
@@ -80,7 +79,7 @@ export async function GET() {
       }
     })
 
-    const mappedArticles = articles.map((article: Article) => ({
+    const mappedArticles = articles.map((article) => ({
       id: article.id,
       title: article.title,
       category: article.category,
