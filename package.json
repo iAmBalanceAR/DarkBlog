@@ -13,11 +13,9 @@
     "@prisma/client": "^5.22.0",
     "@radix-ui/react-tabs": "^1.1.1",
     "@swc/helpers": "^0.5.13",
-    "@tailwindcss/typography": "^0.5.15",
     "@tanstack/react-query": "latest",
     "@tanstack/react-table": "^8.20.5",
     "@tinymce/tinymce-react": "^5.1.1",
-    "@types/nodemailer": "^6.4.16",
     "bcrypt": "^5.1.1",
     "bcryptjs": "^2.4.3",
     "clsx": "^2.1.1",
@@ -37,8 +35,10 @@
     "tailwind-merge": "^2.5.4"
   },
   "devDependencies": {
+    "@tailwindcss/typography": "^0.5.15",
     "@types/bcryptjs": "^2.4.6",
     "@types/node": "^20",
+    "@types/nodemailer": "^6.4.16",
     "@types/react": "^18",
     "@types/react-dom": "^18",
     "@types/webpack": "^5.28.5",
@@ -46,6 +46,7 @@
     "postcss": "^8",
     "prisma": "latest",
     "tailwindcss": "^3",
+    "tailwindcss-animate": "^1.0.7",
     "typescript": "5.6.3"
   }
 }
