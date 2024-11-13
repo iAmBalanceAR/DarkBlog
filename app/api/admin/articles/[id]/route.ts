@@ -1,13 +1,18 @@
 import { NextResponse } from 'next/server'
 import prisma from '@/app/lib/prisma'
 
+interface RouteContext {
+  params: { id: string }
+  searchParams: { [key: string]: string | string[] | undefined }
+}
+
 export async function GET(
-  request: Request,
-  context: { params: { id: string } }
+  _req: Request,
+  { params }: RouteContext
 ) {
   try {
     const article = await prisma.article.findUnique({
-      where: { id: context.params.id },
+      where: { id: params.id },
       include: { category: true }
     })
 
@@ -27,13 +32,13 @@ export async function GET(
 
 export async function PUT(
   request: Request,
-  context: { params: { id: string } }
+  { params }: RouteContext
 ) {
   try {
     const formData = await request.formData()
     
     const article = await prisma.article.update({
-      where: { id: context.params.id },
+      where: { id: params.id },
       data: {
         title: formData.get('title')?.toString() || '',
         slug: formData.get('slug')?.toString() || '',
@@ -60,12 +65,12 @@ export async function PUT(
 }
 
 export async function DELETE(
-  request: Request,
-  context: { params: { id: string } }
+  _req: Request,
+  { params }: RouteContext
 ) {
   try {
     await prisma.article.delete({
-      where: { id: context.params.id }
+      where: { id: params.id }
     })
 
     return NextResponse.json({ success: true })
