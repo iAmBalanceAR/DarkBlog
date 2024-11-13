@@ -1,29 +1,21 @@
 import { NextResponse } from 'next/server'
-import { PrismaClient } from '@prisma/client'
+import prisma from '@/app/lib/prisma'
 
-const prisma = new PrismaClient()
-
-export async function GET(request: Request, props: { params: Promise<{ id: string }> }) {
-  const params = await props.params;
+export async function GET(
+  request: Request,
+  { params }: { params: { id: string } }
+) {
   try {
     const article = await prisma.article.findUnique({
-      where: {
-        id: params.id
-      },
-      include: {
-        category: true
-      }
+      where: { id: params.id },
+      include: { category: true }
     })
 
     if (!article) {
-      return NextResponse.json(
-        { error: 'Article not found' },
-        { status: 404 }
-      )
+      return NextResponse.json({ error: 'Article not found' }, { status: 404 })
     }
 
     return NextResponse.json(article)
-
   } catch (error) {
     console.error('Error fetching article:', error)
     return NextResponse.json(
@@ -33,15 +25,15 @@ export async function GET(request: Request, props: { params: Promise<{ id: strin
   }
 }
 
-export async function PUT(request: Request, props: { params: Promise<{ id: string }> }) {
-  const params = await props.params;
+export async function PUT(
+  request: Request,
+  { params }: { params: { id: string } }
+) {
   try {
     const formData = await request.formData()
     
     const article = await prisma.article.update({
-      where: {
-        id: params.id
-      },
+      where: { id: params.id },
       data: {
         title: formData.get('title')?.toString() || '',
         slug: formData.get('slug')?.toString() || '',
@@ -54,13 +46,10 @@ export async function PUT(request: Request, props: { params: Promise<{ id: strin
         updatedAt: new Date(),
         articleStatus: formData.get('articleStatus')?.toString() || 'DRAFT'
       },
-      include: {
-        category: true
-      }
+      include: { category: true }
     })
 
     return NextResponse.json(article)
-
   } catch (error) {
     console.error('Error updating article:', error)
     return NextResponse.json(
@@ -70,17 +59,16 @@ export async function PUT(request: Request, props: { params: Promise<{ id: strin
   }
 }
 
-export async function DELETE(request: Request, props: { params: Promise<{ id: string }> }) {
-  const params = await props.params;
+export async function DELETE(
+  request: Request,
+  { params }: { params: { id: string } }
+) {
   try {
     await prisma.article.delete({
-      where: {
-        id: params.id
-      }
+      where: { id: params.id }
     })
 
     return NextResponse.json({ success: true })
-
   } catch (error) {
     console.error('Error deleting article:', error)
     return NextResponse.json(
