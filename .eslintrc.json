@@ -1,0 +1,13 @@
+{
+  "extends": ["next/core-web-vitals"],
+  "rules": {
+    "@typescript-eslint/no-empty-object-type": "off",
+    "no-unused-vars": ["warn", { 
+      "varsIgnorePattern": "^_",
+      "argsIgnorePattern": "^_"
+    }],
+    "no-undef": "off",
+    "@next/next/no-img-element": "warn",
+    "react/react-in-jsx-scope": "off"
+  }
+}

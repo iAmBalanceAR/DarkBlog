@@ -1,0 +1,74 @@
+// prisma/schema.prisma
+generator client {
+  provider = "prisma-client-js"
+
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = "file:./dev.db"
+}
+
+model User {
+  id           String    @id @default(cuid())
+  userName     String    @unique @default("newUser")
+  firstName    String
+  lastName     String
+  email        String    @unique
+  password     String
+  profileImage String?
+  socialLink1  String?   // New field
+  socialLink2  String?   // New field
+  socialLink3  String?   // New field
+  role         String    @default("USER")
+  comments     Comment[] // New relation
+  createdAt    DateTime  @default(now())
+  updatedAt    DateTime  @updatedAt
+}
+
+model Category {
+  id          String    @id @default(cuid())
+  name        String    @unique
+  slug        String    @unique
+  description String?
+  image       String?
+  articles    Article[]
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
+}
+
+model Article {
+  id            String    @id @default(cuid())
+  title         String
+  slug          String    @unique
+  blurb         String
+  content       String
+  headerImage   String
+  categoryId    String
+  category      Category  @relation(fields: [categoryId], references: [id])
+  authorId      String?   // Make it optional with ?
+  author        User?     @relation(fields: [authorId], references: [id]) // Make relation optional with ?
+  articleStatus String    @default("DRAFT")
+  scheduledFor  DateTime?
+  publishedAt   DateTime?
+  isFeatured    Boolean   @default(false)
+  comments      Comment[]
+  createdAt     DateTime  @default(now())
+  updatedAt     DateTime  @updatedAt
+}
+
+// New model for comments
+model Comment {
+  id        String   @id @default(cuid())
+  content   String
+  articleId String
+  userId    String
+  order     Int      // For maintaining comment order
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  article   Article  @relation(fields: [articleId], references: [id])
+  user      User     @relation(fields: [userId], references: [id])
+
+  @@index([articleId])
+  @@index([userId])
+}

@@ -1,0 +1,51 @@
+{
+  "name": "darkblog",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint"
+  },
+  "dependencies": {
+    "@next-auth/prisma-adapter": "latest",
+    "@prisma/client": "^5.22.0",
+    "@radix-ui/react-tabs": "^1.1.1",
+    "@swc/helpers": "^0.5.13",
+    "@tailwindcss/typography": "^0.5.15",
+    "@tanstack/react-query": "latest",
+    "@tanstack/react-table": "^8.20.5",
+    "@tinymce/tinymce-react": "^5.1.1",
+    "@types/nodemailer": "^6.4.16",
+    "bcrypt": "^5.1.1",
+    "bcryptjs": "^2.4.3",
+    "clsx": "^2.1.1",
+    "date-fns": "^4.1.0",
+    "force": "^0.0.3",
+    "framer-motion": "^11.11.11",
+    "lucide-react": "latest",
+    "next": "15.0.2",
+    "next-auth": "^4.24.5",
+    "nodemailer": "^6.9.16",
+    "prisma-client": "^0.0.0",
+    "react": "^18.2.0",
+    "react-context": "^0.0.3",
+    "react-dom": "^18.2.0",
+    "react-hook-form": "^7.53.1",
+    "sonner": "^1.7.0",
+    "tailwind-merge": "^2.5.4"
+  },
+  "devDependencies": {
+    "@types/bcryptjs": "^2.4.6",
+    "@types/node": "^20",
+    "@types/react": "^18",
+    "@types/react-dom": "^18",
+    "@types/webpack": "^5.28.5",
+    "autoprefixer": "^10",
+    "postcss": "^8",
+    "prisma": "latest",
+    "tailwindcss": "^3",
+    "typescript": "5.6.3"
+  }
+}
