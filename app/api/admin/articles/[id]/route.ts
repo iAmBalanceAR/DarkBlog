@@ -1,10 +1,13 @@
 import { NextResponse } from 'next/server'
 import prisma from '@/app/lib/prisma'
 
-export async function GET(
-  request: Request,
-  { params }: { params: { id: string } }
-) {
+type Props = {
+  params: {
+    id: string
+  }
+}
+
+export async function GET(_: Request, { params }: Props) {
   try {
     const article = await prisma.article.findUnique({
       where: { id: params.id },
