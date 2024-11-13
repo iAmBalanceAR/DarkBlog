@@ -47,8 +47,13 @@ export default async function CategoryPage({ params }: CategoryPageProps) {
     notFound()
   }
 
-  const formattedBlogs = category.articles.map(article => (
-    {
+  const formattedBlogs = category.articles.map((article: {
+    createdAt: Date;
+    headerImage: string;
+    title: string;
+    slug: string;
+    [key: string]: any;
+  }) => ({
     createdAt: article.createdAt.toISOString(),
     img: article.headerImage,
     title: article.title,
