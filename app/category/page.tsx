@@ -3,7 +3,7 @@ import Header from "@/app/components/header"
 import { Footer } from "@/app/components/footer"
 import { CategoryCard } from "@/app/components/category-card"
 import prisma from "@/app/lib/prisma"
-import { Category } from "@prisma/client"
+import type { Category } from "@prisma/client"
 import { Hero } from "../components/hero"
 
 
