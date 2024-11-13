@@ -2,9 +2,10 @@ import Layout from "@/app/components/layout"
 import Header from "@/app/components/header"
 import { Footer } from "@/app/components/footer"
 import { CategoryCard } from "@/app/components/category-card"
-import prisma from "@/app/lib/prisma"
+import { Prisma } from "@prisma/client"
+type Category = Prisma.CategoryGetPayload<{}>
 import { Hero } from "../components/hero"
-import type { Category } from ".prisma/client"
+
 
 async function getCategories(): Promise<Category[]> {
   try {
