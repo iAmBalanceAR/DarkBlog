@@ -1,4 +1,5 @@
 import type { Config } from 'tailwindcss'
+import animate from "tailwindcss-animate"
 
 const config: Config = {
   content: [
@@ -75,20 +76,7 @@ const config: Config = {
       }
     }
   },
-  plugins: [
-    require("tailwindcss-animate"),
-    require("@tailwindcss/typography"),
-    function ({ matchUtilities, theme }: { matchUtilities: any; theme: any }) {
-      matchUtilities(
-        {
-          'text-shadow': (value: string) => ({
-            textShadow: value,
-          }),
-        },
-        { values: theme('textShadow') }
-      )
-    },
-  ]
+  plugins: [animate],
 }
 
 export default config
