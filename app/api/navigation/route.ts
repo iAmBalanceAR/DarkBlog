@@ -28,7 +28,13 @@ export async function GET() {
     });
 
     // Convert publishedAt dates to strings
-    const formattedCategories = categories.map(category => ({
+    const formattedCategories = categories.map((category: {
+      articles: Array<{
+        publishedAt: Date | null;
+        [key: string]: any;
+      }>;
+      [key: string]: any;
+    }) => ({
       ...category,
       articles: category.articles.map(article => ({
         ...article,
