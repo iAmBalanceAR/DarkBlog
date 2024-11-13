@@ -2,8 +2,8 @@ import Layout from "@/app/components/layout"
 import Header from "@/app/components/header"
 import { Footer } from "@/app/components/footer"
 import { CategoryCard } from "@/app/components/category-card"
-import { Prisma } from "@prisma/client"
-type Category = Prisma.CategoryGetPayload<{}>
+import { Category as PrismaCategory } from "@prisma/client"
+type Category = PrismaCategory
 import { Hero } from "../components/hero"
 
 

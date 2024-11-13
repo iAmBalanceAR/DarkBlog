@@ -46,8 +46,6 @@ model Article {
   headerImage   String
   categoryId    String
   category      Category  @relation(fields: [categoryId], references: [id])
-  authorId      String?   // Make it optional with ?
-  author        User?     @relation(fields: [authorId], references: [id]) // Make relation optional with ?
   articleStatus String    @default("DRAFT")
   scheduledFor  DateTime?
   publishedAt   DateTime?
