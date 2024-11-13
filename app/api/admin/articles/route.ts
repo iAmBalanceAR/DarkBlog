@@ -79,7 +79,16 @@ export async function GET() {
       }
     })
 
-    const mappedArticles = articles.map((article) => ({
+    const mappedArticles = articles.map((article: {
+      id: string;
+      title: string;
+      articleStatus: string;
+      scheduledFor: Date | null;
+      publishedAt: Date | null;
+      isFeatured: boolean;
+      updatedAt: Date;
+      category: { name: string };
+    }) => ({
       id: article.id,
       title: article.title,
       category: article.category,
